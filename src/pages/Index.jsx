@@ -1,19 +1,46 @@
-// Update this page (the content is just a fallback if you fail and example)
-// Use chakra-ui
-import { Container, Text, VStack } from "@chakra-ui/react";
+import { Container, SimpleGrid, VStack } from "@chakra-ui/react";
+import Navbar from "../components/Navbar";
+import Hero from "../components/Hero";
+import ProductCard from "../components/ProductCard";
+import Footer from "../components/Footer";
 
-// Example of using react-icons
-// import { FaRocket } from "react-icons/fa";
-// <IconButton aria-label="Add" icon={<FaRocket />} size="lg" />; // IconButton would also have to be imported from chakra
+const sampleProducts = [
+  {
+    image: "https://via.placeholder.com/150",
+    name: "Smartphone",
+    description: "Latest model with all the new features.",
+    price: 699,
+  },
+  {
+    image: "https://via.placeholder.com/150",
+    name: "Laptop",
+    description: "High performance laptop for all your needs.",
+    price: 999,
+  },
+  {
+    image: "https://via.placeholder.com/150",
+    name: "Headphones",
+    description: "Noise-cancelling over-ear headphones.",
+    price: 199,
+  },
+];
 
 const Index = () => {
   return (
-    <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
-      <VStack spacing={4}>
-        <Text fontSize="2xl">Your Blank Canvas</Text>
-        <Text>Chat with the agent to start making edits.</Text>
-      </VStack>
-    </Container>
+    <>
+      <Navbar />
+      <Hero />
+      <Container maxW="container.xl" py={10}>
+        <VStack spacing={8}>
+          <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
+            {sampleProducts.map((product, index) => (
+              <ProductCard key={index} {...product} />
+            ))}
+          </SimpleGrid>
+        </VStack>
+      </Container>
+      <Footer />
+    </>
   );
 };
 
