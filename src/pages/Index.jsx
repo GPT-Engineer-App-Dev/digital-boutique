@@ -25,7 +25,11 @@ const sampleProducts = [
   },
 ];
 
-const Index = () => {
+const Index = ({ searchQuery, setSearchQuery }) => {
+  const filteredProducts = sampleProducts.filter((product) =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       <Navbar />
@@ -33,7 +37,7 @@ const Index = () => {
       <Container maxW="container.xl" py={10}>
         <VStack spacing={8}>
           <SimpleGrid columns={{ base: 1, md: 3 }} spacing={10}>
-            {sampleProducts.map((product, index) => (
+            {filteredProducts.map((product, index) => (
               <ProductCard key={index} {...product} />
             ))}
           </SimpleGrid>
